@@ -1,0 +1,11 @@
+// Notify module
+'use strict';System.register(["../common/veda.js"],function(a){"use strict";/**
+ * Notify singleton constructor
+ * @return {Function} notify function
+ */function b(){return b.prototype._single?b.prototype._single:b.prototype._single=c}/**
+ * Notify function
+ * @param {string} type - notification type following bootstrap contextual classes ( info | success | warning | danger )
+ * @param {Object} note - note object with properties 'code', 'name', 'message'
+ * @return {void}
+ */function c(){var a=0<arguments.length&&arguments[0]!==void 0?arguments[0]:"info",b=1<arguments.length?arguments[1]:void 0,c=b.code,d=void 0===c?"":c,e=b.name,f=void 0===e?"":e,h=b.message,i=void 0===h?"":h;console.log("".concat(new Date().toLocaleString()," [").concat(a.toUpperCase(),"] - ").concat(d," - ").concat(f," - ").concat(i));var j;"danger"===a?j="fa-times-circle":"info"===a?j="fa-info-circle":"success"===a?j="fa-check-circle":"warning"===a?j="fa-exclamation-circle":void 0;j="fa fa-lg "+j,i=i&&70<i.length?i.substring(0,70)+"...":i;var k="\n    <div class=\"alert alert-".concat(a,"\">\n      <span class=\"").concat(j,"\"></span>\n      <strong>").concat(d,"</strong>\n      <strong>").concat(f,"</strong>\n      <span>").concat(i,"</span>\n    </div>\n  "),l=document.createDocumentFragment(),m=document.createElement("div");l.appendChild(m),m.innerHTML=k.trim(),g.insertBefore(l,g.firstChild),setTimeout(function(){g.removeChild(m)},5e3)}var d,e,f,g,h;return{setters:[function(a){d=a.default}],execute:function(){a("default",d.Notify=b),e="\n  #notifications {\n    max-width: 50%;\n    max-height: 50%;\n    position: fixed;\n    bottom: 10px;\n    right: 10px;\n    z-index: 99999;\n    overflow: hidden;\n  }\n  #notifications > * {\n    display: block;\n    white-space: nowrap;\n  }\n",f=document.createElement("div"),f.id="notification-wrapper",document.body.appendChild(f),g=document.createElement("div"),g.id="notifications",h=document.createElement("style"),h.setAttribute("scoped",""),h.textContent=e.trim(),f.appendChild(h),f.appendChild(g)}}});
+//# sourceMappingURL=notify.js.map

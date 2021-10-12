@@ -1,0 +1,35 @@
+#!/bin/bash
+#APPDIR="./"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$APPDIR/usr/lib"
+
+cat $APPDIR/veda.version
+
+PID=$$
+
+cat $PID
+
+if [ -f $PWD/ontology/config.ttl ]; then
+
+    echo START VEDA
+    $APPDIR/veda --id=AI1 no-watchdog
+
+else 
+
+    echo INSTALL VEDA
+    mkdir $PWD/.pids
+    mkdir $PWD/logs
+    mkdir $PWD/data
+    mkdir $PWD/data/tarantool
+    mkdir $PWD/install-tools
+
+    cp $APPDIR/control-stop.sh $PWD
+    cp $APPDIR/control-start.sh $PWD
+    cp -r $APPDIR/install-tools $PWD
+    cp $APPDIR/veda.properties $PWD
+    cp $APPDIR/veda.modules $PWD
+    cp -r $APPDIR/ontology $PWD
+    cp -r $APPDIR/public $PWD
+    cp -r $APPDIR/source $PWD
+
+fi 
+

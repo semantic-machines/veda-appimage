@@ -1,0 +1,7 @@
+"use strict";System.register(["../common/veda.js","../common/util.js","../common/individual_model.js"],function(){"use strict";var a,b,c;return{setters:[function(b){a=b.default},function(a){b=a.default},function(a){c=a.default}],execute:function(){// Listen to client notifications
+a.on("started",function(){/**
+   * Check received notification
+   * @this Individual
+   * @return {void}
+   */function d(){var d,e=this;try{d=JSON.parse(localStorage.clientNotification)}catch(a){d=[]}var f=e.get("rdf:value").map(function(a){return a.id});!b.areEqual(d,f)&&f.length?f.reduce(function(e,g){return e.then(function(){if(!(0<=d.indexOf(g))){var e=new c(g);return e.load().then(function(a){return(a.properties["v-s:newsAudience"]||[]).map(function(a){return a.data})}).then(function(c){return c=c.sort(),a.user.memberOf().then(function(d){d=d.sort();for(var g,h,k=0,l=0;(g=c[k])&&(h=d[l]);)if(h<g)l++;else if(h>g)k++;else return b.confirm(e).then(function(b){if(b&&(localStorage.clientNotification=JSON.stringify(f),e.hasValue("v-s:script"))){var c=e.get("v-s:script")[0].toString(),d=new Function("veda",c);return d(a)}})})})}})["catch"](console.log)},Promise.resolve()):localStorage.clientNotification=JSON.stringify(f)}var e=new c("cfg:ClientNotification");e.load().then(function(a){a.on("afterReset",d),d.call(a)})})}}});
+//# sourceMappingURL=notification_listener.js.map
